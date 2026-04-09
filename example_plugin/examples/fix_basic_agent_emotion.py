@@ -7,8 +7,7 @@ from livekit.agents.voice import AgentSession, Agent
 from livekit.plugins import openai, silero, deepgram, elevenlabs, cartesia, google
 from livekit.plugins.ditto import DittoAvatarSession, EmotionController, DittoEmotion
 from livekit.plugins.turn_detector.multilingual import MultilingualModel
-#HF import os
-#  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
+
 
 
 # Load environment variables
