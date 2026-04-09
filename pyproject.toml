@@ -1,0 +1,71 @@
+[project]
+name = "livekit-plugins-artalk"
+version = "0.1.1"
+description = "LiveKit Agents plugin for ARTalk 3D TalkingHead avatar integration"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "LiveKit ARTalk Plugin Developers" }
+]
+keywords = ["livekit", "agents", "avatar", "artalk", "talking-head", "ai", "webrtc", "gaussian-splatting"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Communications :: Conferencing",
+    "Topic :: Multimedia :: Video",
+]
+
+dependencies = [
+    # LiveKit Core — pinned to known-compatible versions
+    # livekit-agents 1.4.4 migrated HttpServer to AppRunner (fixes aiohttp proxy kwarg issue)
+    "livekit>=1.0.0",
+    "livekit-agents==1.4.4",
+    "livekit-plugins-cartesia",
+    "livekit-plugins-openai",
+    "livekit-plugins-silero",
+    "python-dotenv",
+    
+    # Audio & Video processing
+    # numpy: relaxed pin to support environment updates, numba 0.60 supports up to 2.0.x
+    "numpy>=2.0.1,<2.1.0",
+    "opencv-python-headless",
+    "scipy",
+    "soundfile",
+    "mediapipe",
+]
+
+[project.optional-dependencies]
+# Server-side extras: FastAPI microservice that runs on the GPU machine.
+# Install via: pip install -e ".[server]"  or  uv pip install -e ".[server]"
+server = [
+    "fastapi>=0.111.0",
+    "uvicorn[standard]>=0.29.0",
+    "httpx>=0.27.0",
+    "python-multipart>=0.0.9",
+]
+
+# GPU dependencies for local (embedded) ARTalk inference.
+# Installed separately by install_server.sh via the PyTorch CUDA index.
+gpu = [
+    "torch>=2.1.0",
+    "torchaudio>=2.1.0",
+    "torchvision>=0.16.0",
+    # diff-gaussian-rasterization must be built from source via install_server.sh
+    # due to CUDA-specific requirements.
+]
+
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+]
+
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["livekit.plugins.artalk", "livekit.plugins.artalk_legacy"]
