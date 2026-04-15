@@ -36,6 +36,12 @@ dependencies = [
     "scipy",
     "soundfile",
     "mediapipe",
+    "librosa",
+    "einops",
+    "trimesh",
+    "tqdm",
+    "pydantic",
+    "aiohttp",
 ]
 
 [project.optional-dependencies]
@@ -46,6 +52,7 @@ server = [
     "uvicorn[standard]>=0.29.0",
     "httpx>=0.27.0",
     "python-multipart>=0.0.9",
+    "gdown",
 ]
 
 # GPU dependencies for local (embedded) ARTalk inference.
