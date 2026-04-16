@@ -51,13 +51,24 @@ class ARTalkAPI:
             )
         )
             
-    async def create_conversation(self, replica_id: str, properties: Dict[str, Any]) -> str:
+    async def create_conversation(
+        self, 
+        replica_id: str, 
+        properties: Dict[str, Any],
+        background_scene: Optional[str] = None,
+        bg_threshold: Optional[int] = None,
+    ) -> str:
         """
         Commands the backend to join the LiveKit room.
         """
         session = self._ensure_session()
         url = f"{self.api_url}/v1/conversation"
-        payload = {"replica_id": replica_id, "properties": properties}
+        payload = {
+            "replica_id": replica_id, 
+            "properties": properties,
+            "background_scene": background_scene,
+            "bg_threshold": bg_threshold,
+        }
         
         async with session.post(url, json=payload) as resp:
             resp.raise_for_status()

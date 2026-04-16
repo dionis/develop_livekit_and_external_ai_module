@@ -30,6 +30,8 @@ class AvatarSession:
         livekit_url: str | None = None,
         livekit_api_key: str | None = None,
         livekit_api_secret: str | None = None,
+        background_scene: str | None = None,
+        bg_threshold: int | None = None,
     ) -> None:
         """
         Connects the ARTalk Backend Server to the current room and routes audio to it.
@@ -66,7 +68,9 @@ class AvatarSession:
                 "livekit_ws_url": livekit_url, 
                 "livekit_room_token": livekit_token,
                 # Additional config like artalk_path could be passed here if dynamic
-            }
+            },
+            background_scene=background_scene,
+            bg_threshold=bg_threshold,
         )
         
         # The key magic: Override the local agent's audio output
