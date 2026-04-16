@@ -23,7 +23,7 @@ dependencies = [
     # LiveKit Core — pinned to known-compatible versions
     # livekit-agents 1.4.4 migrated HttpServer to AppRunner (fixes aiohttp proxy kwarg issue)
     "livekit>=1.0.0",
-    "livekit-agents==1.4.4",
+    "livekit-agents>=1.4.4",
     "livekit-plugins-cartesia",
     "livekit-plugins-openai",
     "livekit-plugins-silero",
